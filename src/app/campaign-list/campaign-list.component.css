@@ -1,0 +1,26 @@
+.campaigns-container {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  flex: 1;
+  overflow: hidden;
+}
+.campaigns-list-container {
+  display: flex;
+  flex-direction: column;
+  /* flex: 1; */
+  /* height: 100%; */
+  margin: 0 60px 0 60px;
+  /* justify-content: center; */
+  align-items: center;
+  padding: inherit;
+  overflow-y: scroll;
+}
+.campaings-header {
+  width: 100%;
+  text-align: left;
+  padding: 10px;
+}
+.campaings-header > h2 {
+  font-size: 28px;
+}

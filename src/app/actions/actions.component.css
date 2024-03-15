@@ -1,0 +1,7 @@
+.actions-container {
+  width: 200px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid blue;
+}

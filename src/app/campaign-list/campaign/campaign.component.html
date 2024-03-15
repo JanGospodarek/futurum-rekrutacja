@@ -1,0 +1,66 @@
+<div class="campaign-container">
+  <div class="campaign-header">
+    <h3>{{ name }}</h3>
+  </div>
+  <div class="campaign-body">
+    <button class="btn keywords-container" (click)="handleShowKeywords()">
+      <div class="keywords-container-overlay"></div>
+      <div class="keywords-container-list">
+        <div *ngFor="let keyword of keywords" class="keyword">
+          {{ keyword }}
+        </div>
+      </div>
+    </button>
+
+    <div class="accordion">
+      <button
+        class="btn accordion-btn"
+        (click)="openAccordion = !openAccordion"
+      >
+        <p>Details</p>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="20"
+          fill="#fff"
+          viewBox="0 0 256 256"
+        >
+          <path
+            d="M128,24A104,104,0,1,0,232,128,104.11,104.11,0,0,0,128,24Zm0,192a88,88,0,1,1,88-88A88.1,88.1,0,0,1,128,216Zm37.66-85.66a8,8,0,0,1,0,11.32l-32,32a8,8,0,0,1-11.32,0l-32-32a8,8,0,0,1,11.32-11.32L120,148.69V88a8,8,0,0,1,16,0v60.69l18.34-18.35A8,8,0,0,1,165.66,130.34Z"
+          ></path>
+        </svg>
+      </button>
+
+      <div
+        class="accordion-content"
+        [ngClass]="{ open: openAccordion, closed: !openAccordion }"
+      >
+        <div class="campaign-details">
+          <div class="campaign-details-row">
+            <div class="campaign-details-row-label">Bid amount:</div>
+            <div class="campaign-details-row-value">10 PLN</div>
+          </div>
+          <div class="campaign-details-row">
+            <div class="campaign-details-row-label">Campaign fund:</div>
+            <div class="campaign-details-row-value">11100000 PLN</div>
+          </div>
+          <div class="campaign-details-row">
+            <div class="campaign-details-row-label">Status:</div>
+            <div class="campaign-details-row-value">on</div>
+          </div>
+          <div class="campaign-details-row">
+            <div class="campaign-details-row-label">Town:</div>
+            <div class="campaign-details-row-value">Kraków</div>
+          </div>
+          <div class="campaign-details-row">
+            <div class="campaign-details-row-label">Radius:</div>
+            <div class="campaign-details-row-value">50km</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="campaign-footer">
+      <button class="btn campaing-footer-btn">Edit</button>
+      <button class="btn campaing-footer-btn">Delete</button>
+    </div>
+  </div>
+</div>
