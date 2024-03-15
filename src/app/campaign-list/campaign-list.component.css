@@ -7,15 +7,15 @@
 }
 .campaigns-list-container {
   display: flex;
-  flex-direction: column;
-  /* flex: 1; */
-  /* height: 100%; */
-  margin: 0 60px 0 60px;
-  /* justify-content: center; */
+  flex-wrap: wrap;
   align-items: center;
   padding: inherit;
   overflow-y: scroll;
 }
+.campaigns-list-container::-webkit-scrollbar {
+  display: none;
+}
+
 .campaings-header {
   width: 100%;
   text-align: left;

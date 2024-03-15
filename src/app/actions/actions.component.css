@@ -1,7 +1,10 @@
 .actions-container {
-  width: 200px;
+  /* width: 200px;
   height: 100%;
   display: flex;
-  flex-direction: column;
-  border-left: 1px solid blue;
+  flex-direction: column; */
+  display: flex;
+}
+.actions-btn {
+  padding: 8px 15px;
 }

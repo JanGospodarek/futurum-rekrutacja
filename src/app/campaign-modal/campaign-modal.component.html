@@ -1,0 +1,49 @@
+<div class="modal" *ngIf="isOpened">
+  <div class="modal-contnet">
+    <h2>Add campaign</h2>
+    <div class="modal-input-container">
+      <div class="modal-input-container-row">
+        <label>Campaign name</label>
+        <input type="text" />
+      </div>
+      <div class="modal-input-container-row">
+        <label>Keywords</label>
+        <input type="text" />
+      </div>
+
+      <div></div>
+      <div class="modal-input-container-row">
+        <label>Bid</label>
+        <input type="number" id="bid" min="10" />
+      </div>
+      <div class="modal-input-container-row">
+        <label>Fund</label>
+        <input type="number" id="fund" min="10" />
+      </div>
+      <div class="modal-input-container-row">
+        <label>Status</label>
+        <label class="switch" style="width: 60px">
+          <input type="checkbox" id="toggle" />
+          <span class="slider round"></span>
+        </label>
+        <span class="modal-input-additional-placeholder">off</span>
+      </div>
+      <div class="modal-input-container-row">
+        <label>Town</label>
+        <select id="town">
+          <option *ngFor="let city of cities" [value]="city">{{ city }}</option>
+        </select>
+      </div>
+      <div class="modal-input-container-row">
+        <label>Radius</label>
+        <input type="number" id="radius" min="10" />
+        <span class="modal-input-additional-placeholder">in km</span>
+      </div>
+    </div>
+    <div class="modal-button-container">
+      <button class="btn-filled">Cancel</button>
+      <button class="btn-filled">Add</button>
+    </div>
+  </div>
+</div>
+<div class="modal-overlay" *ngIf="isOpened" (click)="handleClose()"></div>

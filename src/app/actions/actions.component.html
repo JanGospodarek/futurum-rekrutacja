@@ -1,1 +1,9 @@
-<div class="actions-container"></div>
+<div class="actions-container">
+  <button class="btn-filled actions-btn" (click)="isModalOpened = true">
+    Add
+  </button>
+  <app-campaign-modal
+    (onClose)="isModalOpened = false"
+    [isOpened]="isModalOpened"
+  />
+</div>

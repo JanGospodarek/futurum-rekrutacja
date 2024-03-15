@@ -14,6 +14,7 @@
 .campaign-body {
   padding: 5px;
 }
+
 .keywords-container {
   width: 300px;
   position: relative;
@@ -42,6 +43,7 @@
   padding: 2px 5px 3px 5px;
   font-size: 0.9rem;
 }
+
 .campaign-details {
   font-size: 0.9rem;
   width: 100%;
@@ -62,13 +64,9 @@
   gap: 5px;
 }
 .campaing-footer-btn {
-  margin-top: 3px;
-  background-color: var(--color-primary-200);
-  padding: 6px;
-  border-radius: 15px;
-  color: black;
   width: 60px;
 }
+
 /* Accordion */
 input {
   position: absolute;

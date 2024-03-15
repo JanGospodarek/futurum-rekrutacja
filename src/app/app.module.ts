@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { CampaignListComponent } from './campaign-list/campaign-list.component';
 import { CampaignComponent } from './campaign-list/campaign/campaign.component';
 import { ActionsComponent } from './actions/actions.component';
-import { AddCampaignModalComponent } from './actions/add-campaign-modal/add-campaign-modal.component';
+import { CampaignModalComponent } from './campaign-modal/campaign-modal.component';
 
 @NgModule({
   declarations: [
@@ -13,12 +13,10 @@ import { AddCampaignModalComponent } from './actions/add-campaign-modal/add-camp
     CampaignListComponent,
     CampaignComponent,
     ActionsComponent,
-    AddCampaignModalComponent
+    CampaignModalComponent,
   ],
-  imports: [
-    BrowserModule
-  ],
+  imports: [BrowserModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

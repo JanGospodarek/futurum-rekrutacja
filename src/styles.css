@@ -21,8 +21,16 @@
   --color-surface-500: #717171;
   --color-surface-600: #8b8b8b;
 }
-.btn {
+button {
   background-color: transparent;
   border: none;
   cursor: pointer;
+}
+.btn-filled {
+  margin-top: 3px;
+  background-color: var(--color-primary-200);
+  padding: 6px 10px;
+
+  border-radius: 15px;
+  color: black;
 }
