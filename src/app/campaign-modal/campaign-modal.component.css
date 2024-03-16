@@ -30,6 +30,7 @@ select:focus {
   display: flex;
   gap: 8px;
   margin-top: 10px;
+  align-items: center;
 }
 .modal-input-additional-placeholder {
   color: var(--color-primary-500);
@@ -154,6 +155,11 @@ select:focus {
 
 .slider.round:before {
   border-radius: 50%;
+}
+.error-msg {
+  color: red;
+  font-size: 0.9rem;
+  text-align: center;
 }
 @media screen and (max-width: 400px) {
   .keywords-container {

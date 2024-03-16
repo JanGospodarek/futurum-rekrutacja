@@ -21,7 +21,6 @@ export class TypeaheadComponent {
   }
 
   handleQueryChange(event: Event) {
-    console.log('query', (<HTMLInputElement>event.target).value);
     this.query = (<HTMLInputElement>event.target).value.trim();
     if (this.query === '') {
       this.isOpen = false;

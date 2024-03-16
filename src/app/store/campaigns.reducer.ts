@@ -29,6 +29,7 @@ export const campaignsReducer = createReducer(
     wrtieToLocalStorage(newState);
     return newState;
   }),
+
   on(editCampaign, (state, { campaign }) => {
     const newState = {
       ...state,
@@ -39,6 +40,7 @@ export const campaignsReducer = createReducer(
     wrtieToLocalStorage(newState);
     return newState;
   }),
+
   on(deleteCampaign, (state, { id }) => {
     const newState = {
       ...state,
@@ -47,6 +49,7 @@ export const campaignsReducer = createReducer(
     wrtieToLocalStorage(newState);
     return newState;
   }),
+
   on(init, (state) => {
     const storedState = readFromLocalStorage();
     return storedState ? storedState : state;
