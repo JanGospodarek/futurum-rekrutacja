@@ -1,47 +1,89 @@
 <div class="modal" *ngIf="isOpened">
   <div class="modal-contnet">
-    <h2>Add campaign</h2>
+    <h2>{{ type === "new" ? "Create campaign" : "Edit " + campaign.name }}</h2>
     <div class="modal-input-container">
       <div class="modal-input-container-row">
         <label>Campaign name</label>
-        <input type="text" />
+        <input type="text" [(ngModel)]="campaign.name" />
       </div>
       <div class="modal-input-container-row">
         <label>Keywords</label>
-        <input type="text" />
+        <app-typeahead
+          [query]="currentKeyword"
+          [keywords]="keywords"
+          (onSelectedQuery)="setKeyword($event)"
+        />
+        <button class="btn" (click)="addKeyword()">Add</button>
       </div>
 
-      <div></div>
+      <div class="keywords-container" *ngIf="campaign.keywords.length > 0">
+        <span *ngFor="let keyword of campaign.keywords" class="keyword">
+          {{ keyword }}
+          <button (click)="removeKeyword(keyword)" class="keyword-btn-delete">
+            x
+          </button>
+        </span>
+      </div>
       <div class="modal-input-container-row">
         <label>Bid</label>
-        <input type="number" id="bid" min="10" />
+        <input
+          type="number"
+          id="bid"
+          min="10"
+          [(ngModel)]="campaign.bidAmount"
+        />
       </div>
       <div class="modal-input-container-row">
         <label>Fund</label>
-        <input type="number" id="fund" min="10" />
+        <input
+          type="number"
+          id="fund"
+          min="10"
+          [(ngModel)]="campaign.fundAmount"
+        />
       </div>
       <div class="modal-input-container-row">
         <label>Status</label>
         <label class="switch" style="width: 60px">
-          <input type="checkbox" id="toggle" />
+          <input
+            type="checkbox"
+            id="toggle"
+            [checked]="campaign.status === 'on'"
+            (input)="
+              campaign.status === 'on'
+                ? (campaign.status = 'off')
+                : (campaign.status = 'on')
+            "
+          />
           <span class="slider round"></span>
         </label>
-        <span class="modal-input-additional-placeholder">off</span>
+        <span class="modal-input-additional-placeholder">{{
+          campaign.status
+        }}</span>
       </div>
       <div class="modal-input-container-row">
         <label>Town</label>
-        <select id="town">
+        <select
+          id="town"
+          [(ngModel)]="campaign.town"
+          (input)="handleSetTown($event)"
+        >
           <option *ngFor="let city of cities" [value]="city">{{ city }}</option>
         </select>
       </div>
       <div class="modal-input-container-row">
         <label>Radius</label>
-        <input type="number" id="radius" min="10" />
+        <input
+          type="number"
+          id="radius"
+          min="10"
+          [(ngModel)]="campaign.radius"
+        />
         <span class="modal-input-additional-placeholder">in km</span>
       </div>
     </div>
     <div class="modal-button-container">
-      <button class="btn-filled">Cancel</button>
+      <button class="btn-filled" (click)="handleClose()">Cancel</button>
       <button class="btn-filled">Add</button>
     </div>
   </div>

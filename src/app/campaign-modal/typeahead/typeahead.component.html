@@ -1,0 +1,16 @@
+<div class="typeahead-container">
+  <input
+    type="text"
+    [value]="query"
+    (input)="handleQueryChange($event)"
+    (blur)="handleBlur()"
+  />
+  <div class="suggestions-container" *ngIf="isOpen">
+    <button
+      *ngFor="let keyword of selectedKyewords"
+      (click)="handleResultSelected(keyword)"
+    >
+      {{ keyword }}
+    </button>
+  </div>
+</div>

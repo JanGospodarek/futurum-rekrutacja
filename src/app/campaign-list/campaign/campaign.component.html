@@ -1,12 +1,12 @@
 <div class="campaign-container">
   <div class="campaign-header">
-    <h3>{{ name }}</h3>
+    <h3>{{ campaign.name }}</h3>
   </div>
   <div class="campaign-body">
     <button class="btn keywords-container" (click)="handleShowKeywords()">
       <div class="keywords-container-overlay"></div>
       <div class="keywords-container-list">
-        <div *ngFor="let keyword of keywords" class="keyword">
+        <div *ngFor="let keyword of campaign.keywords" class="keyword">
           {{ keyword }}
         </div>
       </div>
@@ -37,30 +37,47 @@
         <div class="campaign-details">
           <div class="campaign-details-row">
             <div class="campaign-details-row-label">Bid amount:</div>
-            <div class="campaign-details-row-value">10 PLN</div>
+            <div class="campaign-details-row-value">
+              {{ campaign.bidAmount }} PLN
+            </div>
           </div>
           <div class="campaign-details-row">
             <div class="campaign-details-row-label">Campaign fund:</div>
-            <div class="campaign-details-row-value">11100000 PLN</div>
+            <div class="campaign-details-row-value">
+              {{ campaign.fundAmount }} PLN
+            </div>
           </div>
           <div class="campaign-details-row">
             <div class="campaign-details-row-label">Status:</div>
-            <div class="campaign-details-row-value">on</div>
+            <div class="campaign-details-row-value">{{ campaign.status }}</div>
           </div>
           <div class="campaign-details-row">
             <div class="campaign-details-row-label">Town:</div>
-            <div class="campaign-details-row-value">Kraków</div>
+            <div class="campaign-details-row-value">{{ campaign.town }}</div>
           </div>
           <div class="campaign-details-row">
             <div class="campaign-details-row-label">Radius:</div>
-            <div class="campaign-details-row-value">50km</div>
+            <div class="campaign-details-row-value">
+              {{ campaign.radius }}km
+            </div>
           </div>
         </div>
       </div>
     </div>
     <div class="campaign-footer">
-      <button class="btn-filled campaing-footer-btn">Edit</button>
+      <button
+        class="btn-filled campaing-footer-btn"
+        (click)="isModalOpened = true"
+      >
+        Edit
+      </button>
       <button class="btn-filled campaing-footer-btn">Delete</button>
     </div>
   </div>
 </div>
+<app-campaign-modal
+  (onClose)="isModalOpened = false"
+  [isOpened]="isModalOpened"
+  type="edit"
+  [campaign]="campaign"
+/>

@@ -7,13 +7,18 @@
   </div>
   <div class="campaigns-list-container">
     <!-- <p>No campaigns added yet!</p> -->
-    <app-campaign />
-    <app-campaign />
-    <app-campaign />
-    <app-campaign />
-    <app-campaign />
-    <app-campaign />
-    <app-campaign />
-    <app-campaign />
+    <!-- <div *ngIf="(campaigns$ | async)!.length > 0; else elseBlock">
+      <p>No campaigns added yet!</p>
+    </div> -->
+    <ng-template>
+      <!-- <app-campaign
+        *ngFor="let campaign of (campaigns | async)!.campaigns"
+        [campaign]="campaign"
+      /> -->
+      <!-- <div *ngFor="let campaign of (campaigns$ | async)!.campaigns">
+        {{ campaign.name }}
+      </div> -->
+      {{ count$ | async }}
+    </ng-template>
   </div>
 </div>

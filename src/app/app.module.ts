@@ -6,6 +6,10 @@ import { CampaignListComponent } from './campaign-list/campaign-list.component';
 import { CampaignComponent } from './campaign-list/campaign/campaign.component';
 import { ActionsComponent } from './actions/actions.component';
 import { CampaignModalComponent } from './campaign-modal/campaign-modal.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TypeaheadComponent } from './campaign-modal/typeahead/typeahead.component';
+import { StoreModule } from '@ngrx/store';
+import { campaignsReducer } from './store/campaigns.reducer';
 
 @NgModule({
   declarations: [
@@ -14,8 +18,14 @@ import { CampaignModalComponent } from './campaign-modal/campaign-modal.componen
     CampaignComponent,
     ActionsComponent,
     CampaignModalComponent,
+    TypeaheadComponent,
   ],
-  imports: [BrowserModule],
+  imports: [
+    BrowserModule,
+    StoreModule.forRoot({ campaigns: campaignsReducer }),
+    FormsModule,
+    ReactiveFormsModule,
+  ],
   providers: [],
   bootstrap: [AppComponent],
 })

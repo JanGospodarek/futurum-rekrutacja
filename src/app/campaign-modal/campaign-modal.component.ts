@@ -1,6 +1,17 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { Observable, debounceTime, map } from 'rxjs';
+import { Campaign, City } from '../types';
 const keywords = ['keyword1', 'keyword2', 'keyword3', 'keyword4', 'keyword5'];
+
+const cities: City[] = [
+  'Warszawa',
+  'Kraków',
+  'Gdańsk',
+  'Wrocław',
+  'Poznań',
+  'Szczecin',
+  'Lublin',
+];
 
 @Component({
   selector: 'app-campaign-modal',
@@ -10,33 +21,47 @@ const keywords = ['keyword1', 'keyword2', 'keyword3', 'keyword4', 'keyword5'];
 export class CampaignModalComponent {
   @Output() onClose: EventEmitter<any> = new EventEmitter();
   @Input() isOpened = false;
-  public model: any;
-  cities = [
-    'Warszawa',
-    'Kraków',
-    'Gdańsk',
-    'Wrocław',
-    'Poznań',
-    'Szczecin',
-    'Lublin',
-  ];
+  @Input() type: 'new' | 'edit' = 'new';
+
+  @Input() campaign: Campaign = {
+    id: '',
+    name: '',
+    keywords: [],
+    bidAmount: 10,
+    fundAmount: 10,
+    status: 'on',
+    town: 'Warszawa',
+    radius: 10,
+  };
+  keywords: string[] = keywords;
+  cities: string[] = cities;
+  currentKeyword = '';
+
   handleClose() {
     this.onClose.emit();
   }
 
-  search = (text$: Observable<string>) =>
-    text$.pipe(
-      debounceTime(200),
-      map((term) =>
-        term === ''
-          ? []
-          : keywords
-              .filter(
-                (name) => name.toLowerCase().indexOf(term.toLowerCase()) > -1
-              )
-              .slice(0, 10)
-      )
-    );
+  setKeyword(value: string) {
+    this.currentKeyword = value.trim();
+  }
 
-  formatter = (x: { name: string }) => x.name;
+  addKeyword() {
+    if (
+      this.currentKeyword === '' ||
+      this.campaign.keywords.includes(this.currentKeyword)
+    )
+      return;
+
+    this.campaign.keywords.push(this.currentKeyword);
+    this.currentKeyword = '';
+  }
+
+  removeKeyword(keyword: string) {
+    this.campaign.keywords = this.campaign.keywords.filter(
+      (item) => item !== keyword
+    );
+  }
+  handleSetTown(event: Event) {
+    this.campaign.town = (<HTMLInputElement>event.target).value as City;
+  }
 }
