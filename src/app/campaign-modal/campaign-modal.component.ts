@@ -19,7 +19,8 @@ const cities: City[] = [
   styleUrls: ['./campaign-modal.component.css'],
 })
 export class CampaignModalComponent {
-  @Output() onClose: EventEmitter<any> = new EventEmitter();
+  @Output() onClose: EventEmitter<Campaign> = new EventEmitter();
+  @Output() onSubmit: EventEmitter<any> = new EventEmitter();
   @Input() isOpened = false;
   @Input() type: 'new' | 'edit' = 'new';
 
@@ -33,12 +34,16 @@ export class CampaignModalComponent {
     town: 'Warszawa',
     radius: 10,
   };
+
   keywords: string[] = keywords;
   cities: string[] = cities;
   currentKeyword = '';
 
   handleClose() {
     this.onClose.emit();
+  }
+  handleSubmit() {
+    this.onSubmit.emit(this.campaign);
   }
 
   setKeyword(value: string) {
@@ -52,7 +57,7 @@ export class CampaignModalComponent {
     )
       return;
 
-    this.campaign.keywords.push(this.currentKeyword);
+    this.campaign.keywords = [...this.campaign.keywords, this.currentKeyword];
     this.currentKeyword = '';
   }
 

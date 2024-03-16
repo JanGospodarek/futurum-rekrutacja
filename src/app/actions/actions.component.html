@@ -4,6 +4,8 @@
   </button>
   <app-campaign-modal
     (onClose)="isModalOpened = false"
+    (onSubmit)="handleAdd($event)"
     [isOpened]="isModalOpened"
+    type="new"
   />
 </div>

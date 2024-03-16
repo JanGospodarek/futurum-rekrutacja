@@ -10,15 +10,11 @@
     <!-- <div *ngIf="(campaigns$ | async)!.length > 0; else elseBlock">
       <p>No campaigns added yet!</p>
     </div> -->
-    <ng-template>
-      <!-- <app-campaign
-        *ngFor="let campaign of (campaigns | async)!.campaigns"
-        [campaign]="campaign"
-      /> -->
-      <!-- <div *ngFor="let campaign of (campaigns$ | async)!.campaigns">
-        {{ campaign.name }}
-      </div> -->
-      {{ count$ | async }}
-    </ng-template>
+    <!-- <div style="color: white">{{ count$ | async }}</div> -->
+
+    <app-campaign
+      *ngFor="let campaign of (campaigns$ | async)!.campaigns"
+      [campaign]="campaign"
+    />
   </div>
 </div>

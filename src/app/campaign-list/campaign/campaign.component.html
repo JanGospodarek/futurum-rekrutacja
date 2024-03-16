@@ -77,7 +77,8 @@
 </div>
 <app-campaign-modal
   (onClose)="isModalOpened = false"
+  (onSubmit)="handleEdit($event)"
   [isOpened]="isModalOpened"
   type="edit"
-  [campaign]="campaign"
+  [campaign]="editableCampaign"
 />
