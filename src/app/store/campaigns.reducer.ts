@@ -1,50 +1,54 @@
 import { createReducer, createSelector, on } from '@ngrx/store';
-import { addCampaign, editCampaign, deleteCampaign } from './campaigns.actions';
+import {
+  addCampaign,
+  editCampaign,
+  deleteCampaign,
+  init,
+} from './campaigns.actions';
 import { Campaign } from '../types';
+import {
+  readFromLocalStorage,
+  wrtieToLocalStorage,
+} from '../utils/localStorage';
 
 export interface InitialState {
   campaigns: Campaign[];
-  number: number;
 }
 export const initialState: InitialState = {
-  campaigns: [
-    {
-      id: '1',
-      name: 'First campaign',
-      fundAmount: 1000,
-      bidAmount: 100,
-      town: 'Warszawa',
-      radius: 50,
-      keywords: ['first', 'campaign'],
-      status: 'on',
-    },
-    {
-      id: '2',
-      name: 'Second campaign',
-      fundAmount: 1011100,
-      bidAmount: 10330,
-      town: 'Kraków',
-      radius: 20,
-      keywords: ['first', 'campaign'],
-      status: 'on',
-    },
-  ],
-  number: 123,
+  campaigns: [],
 };
 export const campaignsReducer = createReducer(
   initialState,
-  on(addCampaign, (state, { campaign }) => ({
-    ...state,
-    campaigns: [...state.campaigns, campaign],
-  })),
-  on(editCampaign, (state, { campaign }) => ({
-    ...state,
-    campaigns: state.campaigns.map((c) =>
-      c.id === campaign.id ? campaign : c
-    ),
-  })),
-  on(deleteCampaign, (state, { id }) => ({
-    ...state,
-    campaigns: state.campaigns.filter((c) => c.id !== id),
-  }))
+  on(addCampaign, (state, { campaign }) => {
+    const campaignCopy = { ...campaign };
+    campaignCopy.id = Math.random().toString(36);
+    const newState = {
+      ...state,
+      campaigns: [...state.campaigns, campaignCopy],
+    };
+    wrtieToLocalStorage(newState);
+    return newState;
+  }),
+  on(editCampaign, (state, { campaign }) => {
+    const newState = {
+      ...state,
+      campaigns: state.campaigns.map((c) =>
+        c.id === campaign.id ? campaign : c
+      ),
+    };
+    wrtieToLocalStorage(newState);
+    return newState;
+  }),
+  on(deleteCampaign, (state, { id }) => {
+    const newState = {
+      ...state,
+      campaigns: state.campaigns.filter((c) => c.id !== id),
+    };
+    wrtieToLocalStorage(newState);
+    return newState;
+  }),
+  on(init, (state) => {
+    const storedState = readFromLocalStorage();
+    return storedState ? storedState : state;
+  })
 );

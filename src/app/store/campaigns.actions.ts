@@ -15,3 +15,4 @@ export const deleteCampaign = createAction(
   ' Delete Campaign',
   props<{ id: string }>()
 );
+export const init = createAction('Init app');

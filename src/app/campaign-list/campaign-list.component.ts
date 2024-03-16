@@ -4,13 +4,14 @@ import { Observable } from 'rxjs';
 
 import { Store } from '@ngrx/store';
 import { InitialState } from '../store/campaigns.reducer';
+import { init } from '../store/campaigns.actions';
 
 @Component({
   selector: 'app-campaign-list',
   templateUrl: './campaign-list.component.html',
   styleUrls: ['./campaign-list.component.css'],
 })
-export class CampaignListComponent {
+export class CampaignListComponent implements OnInit {
   campaigns$: Observable<InitialState>;
 
   constructor(
@@ -19,7 +20,8 @@ export class CampaignListComponent {
     }>
   ) {
     this.campaigns$ = store.select('campaigns');
-
-    console.log(this.campaigns$);
+  }
+  ngOnInit(): void {
+    this.store.dispatch(init());
   }
 }

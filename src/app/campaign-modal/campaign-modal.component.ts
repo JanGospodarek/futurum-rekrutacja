@@ -12,6 +12,16 @@ const cities: City[] = [
   'Szczecin',
   'Lublin',
 ];
+const companyMock: Campaign = {
+  id: '',
+  name: '',
+  keywords: [],
+  bidAmount: 10,
+  fundAmount: 10,
+  status: 'on',
+  town: 'Warszawa',
+  radius: 10,
+};
 
 @Component({
   selector: 'app-campaign-modal',
@@ -24,16 +34,7 @@ export class CampaignModalComponent {
   @Input() isOpened = false;
   @Input() type: 'new' | 'edit' = 'new';
 
-  @Input() campaign: Campaign = {
-    id: '',
-    name: '',
-    keywords: [],
-    bidAmount: 10,
-    fundAmount: 10,
-    status: 'on',
-    town: 'Warszawa',
-    radius: 10,
-  };
+  @Input() campaign: Campaign = { ...companyMock };
 
   keywords: string[] = keywords;
   cities: string[] = cities;
@@ -44,6 +45,7 @@ export class CampaignModalComponent {
   }
   handleSubmit() {
     this.onSubmit.emit(this.campaign);
+    this.campaign = { ...companyMock };
   }
 
   setKeyword(value: string) {
