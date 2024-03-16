@@ -44,6 +44,7 @@ export class CampaignModalComponent implements OnInit {
   campaignsNames: string[] = [];
   editableCampaign: Campaign = { ...this.campaign };
   errorMsg = '';
+  closingAnimation = false;
   constructor(
     private store: Store<{
       campaigns: InitialState;
@@ -58,7 +59,11 @@ export class CampaignModalComponent implements OnInit {
     this.editableCampaign = { ...this.campaign };
   }
   handleClose() {
-    this.onClose.emit();
+    this.closingAnimation = true;
+    setTimeout(() => {
+      this.closingAnimation = false;
+      this.onClose.emit();
+    }, 300);
   }
   handleSubmit() {
     if (

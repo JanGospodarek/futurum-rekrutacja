@@ -1,4 +1,11 @@
-<div class="modal" *ngIf="isOpened">
+<div
+  class="modal"
+  *ngIf="isOpened"
+  [ngClass]="{
+    'animate-fade-out': closingAnimation,
+    'animate-fade-in': !closingAnimation
+  }"
+>
   <div class="modal-contnet">
     <h2>
       {{ type === "new" ? "Create campaign" : "Edit " + campaign.name }}
@@ -94,7 +101,9 @@
     </div>
     <div class="modal-button-container">
       <button class="btn-filled" (click)="handleClose()">Cancel</button>
-      <button class="btn-filled" (click)="handleSubmit()">Add</button>
+      <button class="btn-filled" (click)="handleSubmit()">
+        {{ type === "new" ? "Create" : "Save" }}
+      </button>
       <p class="error-msg">{{ errorMsg }}</p>
     </div>
   </div>

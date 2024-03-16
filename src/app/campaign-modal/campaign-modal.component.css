@@ -161,6 +161,12 @@ select:focus {
   font-size: 0.9rem;
   text-align: center;
 }
+.animate-fade-out {
+  animation: 0.3s fadeOutDesktop;
+}
+.animate-fade-in {
+  animation: 0.3s fadeInDesktop;
+}
 @media screen and (max-width: 400px) {
   .keywords-container {
     width: 100%;
@@ -178,5 +184,48 @@ select:focus {
   }
   .keywords-container {
     max-height: 60px;
+  }
+  .animate-fade-out {
+    animation: 0.3s fadeOutMobile;
+  }
+  .animate-fade-in {
+    animation: 0.3s fadeInMobile;
+  }
+}
+
+@keyframes fadeInDesktop {
+  from {
+    opacity: 0;
+    top: 60%;
+  }
+  to {
+    opacity: 1;
+    top: 50%;
+  }
+}
+@keyframes fadeOutDesktop {
+  from {
+    opacity: 1;
+    top: 50%;
+  }
+  to {
+    opacity: 0;
+    top: 60%;
+  }
+}
+@keyframes fadeInMobile {
+  from {
+    top: 150%;
+  }
+  to {
+    top: 100%;
+  }
+}
+@keyframes fadeOutMobile {
+  from {
+    top: 100%;
+  }
+  to {
+    top: 150%;
   }
 }
