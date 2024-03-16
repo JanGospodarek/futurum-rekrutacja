@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { InitialState } from 'src/app/store/campaigns.reducer';
 import { Campaign } from 'src/app/types';
-import { editCampaign } from 'src/app/store/campaigns.actions';
+import { deleteCampaign, editCampaign } from 'src/app/store/campaigns.actions';
 @Component({
   selector: 'app-campaign',
   templateUrl: './campaign.component.html',
@@ -28,8 +28,11 @@ export class CampaignComponent implements OnInit {
     this.editableCampaign = { ...this.campaign };
   }
   handleEdit(campaign: Campaign) {
-    console.log(campaign);
     this.store.dispatch(editCampaign({ campaign }));
+  }
+  handleDelete() {
+    const id = this.campaign.id;
+    this.store.dispatch(deleteCampaign({ id }));
   }
   handleShowKeywords() {
     console.log(this.editableCampaign);

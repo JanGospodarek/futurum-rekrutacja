@@ -11,10 +11,17 @@
       <p>No campaigns added yet!</p>
     </div> -->
     <!-- <div style="color: white">{{ count$ | async }}</div> -->
+    <div
+      *ngIf="(campaigns$ | async)!.campaigns.length === 0"
+      class="campaigns-warning"
+    >
+      <p>No campaigns added yet!</p>
+    </div>
 
     <app-campaign
       *ngFor="let campaign of (campaigns$ | async)!.campaigns"
       [campaign]="campaign"
+      class="campaign-container-wrapper"
     />
   </div>
 </div>

@@ -12,10 +12,30 @@
   padding: inherit;
   overflow-y: scroll;
 }
+@media screen and (max-width: 400px) {
+  .campaigns-list-container {
+    flex-direction: column;
+    justify-content: center;
+  }
+  .campaign-container-wrapper {
+    width: 100%;
+  }
+}
+@media screen and (min-width: 400px) {
+  .campaigns-list-container {
+    flex-direction: row;
+  }
+  .campaign-container-wrapper {
+    width: auto;
+  }
+}
+
 .campaigns-list-container::-webkit-scrollbar {
   display: none;
 }
-
+.campaigns-warning {
+  padding: 20px;
+}
 .campaings-header {
   width: 100%;
   text-align: left;
