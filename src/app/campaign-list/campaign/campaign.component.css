@@ -1,6 +1,6 @@
 .campaign-container {
   margin: 10px;
-  padding: 10px;
+  padding: 15px;
   height: auto;
   display: flex;
   flex-direction: column;
@@ -13,6 +13,7 @@
 
 .campaign-header > h3 {
   font-weight: 500;
+  font-size: 1.5rem;
 }
 .campaign-body {
   padding: 5px;
@@ -83,7 +84,7 @@ input {
   z-index: -1;
 }
 .accordion {
-  margin: 10px;
+  margin: 10px 0px;
 
   overflow: hidden;
 }
