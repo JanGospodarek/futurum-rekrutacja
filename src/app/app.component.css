@@ -48,4 +48,13 @@
   font-size: 1.3rem;
   font-weight: 500;
   color: var(--color-primary-500);
+  white-space: nowrap;
+}
+
+@media screen and (max-width: 400px) {
+  .campaings-header {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
 }
