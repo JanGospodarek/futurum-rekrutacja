@@ -29,7 +29,7 @@ export class TypeaheadComponent {
     this.onSelectedQuery.emit(this.query);
 
     this.selectedKyewords = this.keywords.filter((keyword) =>
-      keyword.includes(this.query)
+      keyword.toLowerCase().includes(this.query.toLowerCase())
     );
     if (this.selectedKyewords.length === 0) this.isOpen = false;
     else this.isOpen = true;

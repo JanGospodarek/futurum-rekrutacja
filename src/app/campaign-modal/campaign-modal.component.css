@@ -186,10 +186,10 @@ select:focus {
     max-height: 60px;
   }
   .animate-fade-out {
-    -webkit-animation: 0.3s fadeOutMobile;
+    animation: 0.3s fadeOutMobile;
   }
   .animate-fade-in {
-    -webkit-animation: 0.3s fadeInMobile;
+    animation: 0.3s fadeInMobile;
   }
 }
 

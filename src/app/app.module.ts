@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TypeaheadComponent } from './campaign-modal/typeahead/typeahead.component';
 import { StoreModule } from '@ngrx/store';
 import { campaignsReducer } from './store/campaigns.reducer';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { campaignsReducer } from './store/campaigns.reducer';
     StoreModule.forRoot({ campaigns: campaignsReducer }),
     FormsModule,
     ReactiveFormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

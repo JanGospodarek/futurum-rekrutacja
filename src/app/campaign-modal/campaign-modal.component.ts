@@ -3,17 +3,10 @@ import { Observable, debounceTime, map } from 'rxjs';
 import { Campaign, City } from '../types';
 import { Store } from '@ngrx/store';
 import { InitialState } from '../store/campaigns.reducer';
+import { HttpClient } from '@angular/common/http';
+
 const keywords = ['keyword1', 'keyword2', 'keyword3', 'keyword4', 'keyword5'];
 
-const cities: City[] = [
-  'Warszawa',
-  'Kraków',
-  'Gdańsk',
-  'Wrocław',
-  'Poznań',
-  'Szczecin',
-  'Lublin',
-];
 const companyMock: Campaign = {
   id: '',
   name: '',
@@ -37,22 +30,29 @@ export class CampaignModalComponent implements OnInit {
   @Input() type: 'new' | 'edit' = 'new';
   @Input() campaign: Campaign = { ...companyMock };
 
+  url: string = '/assets/keywords.json';
+
   keywords: string[] = keywords;
-  cities: string[] = cities;
+  cities: string[] = [];
   currentKeyword = '';
   campaigns$: Observable<InitialState>;
   campaignsNames: string[] = [];
   editableCampaign: Campaign = { ...this.campaign };
   errorMsg = '';
   closingAnimation = false;
+
   constructor(
     private store: Store<{
       campaigns: InitialState;
-    }>
+    }>,
+    private http: HttpClient
   ) {
     this.campaigns$ = store.select('campaigns');
   }
   ngOnInit(): void {
+    this.http.get(this.url).subscribe((res) => {
+      this.keywords = (res as { keywords: string[] }).keywords;
+    });
     this.campaigns$.subscribe((data) => {
       this.campaignsNames = data.campaigns.map((c) => c.name);
     });
