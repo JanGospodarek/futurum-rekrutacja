@@ -1,0 +1,23 @@
+.keyword {
+  border-radius: 10px;
+  border: 1.5px solid var(--color-primary-300);
+  padding: 2px 5px 3px 5px;
+  font-size: 0.9rem;
+}
+.allkeywords-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  max-width: 300px;
+  max-height: 200px;
+  overflow: scroll;
+  padding: 10px;
+}
+.allkeywords-container::-webkit-scrollbar {
+  display: none;
+}
+@media screen and (max-width: 400px) {
+  .allkeywords-container {
+    max-width: 100%;
+  }
+}

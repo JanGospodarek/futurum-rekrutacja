@@ -1,0 +1,18 @@
+<div
+  class="modal"
+  *ngIf="isOpened"
+  [ngClass]="{
+    'animate-fade-out': closingAnimation,
+    'animate-fade-in': !closingAnimation
+  }"
+>
+  <div class="modal-contnet">
+    <h2>All keywords</h2>
+    <div class="allkeywords-container">
+      <div *ngFor="let keyword of keywords" class="keyword">
+        {{ keyword }}
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-overlay" *ngIf="isOpened" (click)="handleClose()"></div>

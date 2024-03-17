@@ -3,7 +3,10 @@
     <h3>{{ campaign.name }}</h3>
   </div>
   <div class="campaign-body">
-    <button class="btn keywords-container" (click)="handleShowKeywords()">
+    <button
+      class="btn keywords-container"
+      (click)="isKeywordModalOpened = true"
+    >
       <div class="keywords-container-overlay"></div>
       <div class="keywords-container-list">
         <div *ngFor="let keyword of campaign.keywords" class="keyword">
@@ -65,7 +68,7 @@
       </div>
     </div>
     <div class="campaign-footer">
-      <button class="campaing-footer-btn" (click)="isModalOpened = true">
+      <button class="campaing-footer-btn" (click)="isEditModalOpened = true">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="#00bcd4"
@@ -94,9 +97,14 @@
   </div>
 </div>
 <app-campaign-modal
-  (onClose)="isModalOpened = false"
+  (onClose)="isEditModalOpened = false"
   (onSubmit)="handleEdit($event)"
-  [isOpened]="isModalOpened"
+  [isOpened]="isEditModalOpened"
   type="edit"
   [campaign]="editableCampaign"
+/>
+<app-campaign-keyword-modal
+  (onClose)="isKeywordModalOpened = false"
+  [isOpened]="isKeywordModalOpened"
+  [keywords]="campaign.keywords"
 />

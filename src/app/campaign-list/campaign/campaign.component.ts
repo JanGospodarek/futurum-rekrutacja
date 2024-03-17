@@ -22,7 +22,8 @@ export class CampaignComponent implements OnInit {
   editableCampaign = { ...this.campaign };
 
   openAccordion = false;
-  isModalOpened = false;
+  isEditModalOpened = false;
+  isKeywordModalOpened = false;
   constructor(private store: Store<{ campaigns: InitialState }>) {}
   ngOnInit(): void {
     this.editableCampaign = { ...this.campaign };
