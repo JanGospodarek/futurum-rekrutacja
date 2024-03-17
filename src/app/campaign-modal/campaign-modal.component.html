@@ -47,7 +47,10 @@
           type="number"
           id="bid"
           min="10"
+          max="1000000"
+          maxlength="10"
           [(ngModel)]="editableCampaign.bidAmount"
+          [formControl]="bidControl"
         />
       </div>
       <div class="modal-input-container-row">
@@ -56,7 +59,9 @@
           type="number"
           id="fund"
           min="10"
+          max="100000000"
           [(ngModel)]="editableCampaign.fundAmount"
+          [formControl]="fundControl"
         />
       </div>
       <div class="modal-input-container-row">
@@ -94,7 +99,9 @@
           type="number"
           id="radius"
           min="10"
+          max="100000"
           [(ngModel)]="editableCampaign.radius"
+          [formControl]="radiusControl"
         />
         <span class="modal-input-additional-placeholder">in km</span>
       </div>
@@ -108,4 +115,12 @@
     </div>
   </div>
 </div>
-<div class="modal-overlay" *ngIf="isOpened" (click)="handleClose()"></div>
+<div
+  class="modal-overlay"
+  *ngIf="isOpened"
+  [ngClass]="{
+    'animate-overlay-fade-out': closingAnimation,
+    'animate-overlay-fade-in': !closingAnimation
+  }"
+  (click)="handleClose()"
+></div>

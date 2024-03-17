@@ -11,6 +11,7 @@ import { TypeaheadComponent } from './campaign-modal/typeahead/typeahead.compone
 import { StoreModule } from '@ngrx/store';
 import { campaignsReducer } from './store/campaigns.reducer';
 import { HttpClientModule } from '@angular/common/http';
+import { CampaignKeywordModalComponent } from './campaign-list/campaign/campaign-keyword-modal/campaign-keyword-modal.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { HttpClientModule } from '@angular/common/http';
     ActionsComponent,
     CampaignModalComponent,
     TypeaheadComponent,
+    CampaignKeywordModalComponent,
   ],
   imports: [
     BrowserModule,

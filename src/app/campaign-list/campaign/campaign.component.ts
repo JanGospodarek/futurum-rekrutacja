@@ -31,6 +31,7 @@ export class CampaignComponent implements OnInit {
   handleEdit(campaign: Campaign) {
     this.store.dispatch(editCampaign({ campaign }));
   }
+
   handleDelete() {
     const id = this.campaign.id;
     this.store.dispatch(deleteCampaign({ id }));

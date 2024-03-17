@@ -1,6 +1,10 @@
 <div class="campaign-container">
   <div class="campaign-header">
     <h3>{{ campaign.name }}</h3>
+    <div>
+      <div class="status-badge"></div>
+      <p>{{ campaign.status }}</p>
+    </div>
   </div>
   <div class="campaign-body">
     <button
@@ -50,10 +54,10 @@
               {{ campaign.fundAmount }} PLN
             </div>
           </div>
-          <div class="campaign-details-row">
+          <!-- <div class="campaign-details-row">
             <div class="campaign-details-row-label">Status:</div>
             <div class="campaign-details-row-value">{{ campaign.status }}</div>
-          </div>
+          </div> -->
           <div class="campaign-details-row">
             <div class="campaign-details-row-label">Town:</div>
             <div class="campaign-details-row-value">{{ campaign.town }}</div>

@@ -4,8 +4,7 @@ import { Campaign, City } from '../types';
 import { Store } from '@ngrx/store';
 import { InitialState } from '../store/campaigns.reducer';
 import { HttpClient } from '@angular/common/http';
-
-const keywords = ['keyword1', 'keyword2', 'keyword3', 'keyword4', 'keyword5'];
+import { FormControl, Validators } from '@angular/forms';
 
 const companyMock: Campaign = {
   id: '',
@@ -30,15 +29,31 @@ export class CampaignModalComponent implements OnInit {
   @Input() type: 'new' | 'edit' = 'new';
   @Input() campaign: Campaign = { ...companyMock };
 
-  url: string = '/assets/keywords.json';
+  keywordsUrl: string = '/assets/keywords.json';
+  citiesUrl: string = '/assets/cities.json';
 
-  keywords: string[] = keywords;
+  bidControl = new FormControl(10, [
+    Validators.required,
+    Validators.min(10),
+    Validators.max(100000),
+  ]);
+  fundControl = new FormControl(10, [
+    Validators.required,
+    Validators.min(10),
+    Validators.max(100000),
+  ]);
+  radiusControl = new FormControl(10, [
+    Validators.required,
+    Validators.min(1),
+    Validators.max(1000),
+  ]);
+  keywords: string[] = [];
   cities: string[] = [];
-  currentKeyword = '';
   campaigns$: Observable<InitialState>;
   campaignsNames: string[] = [];
   editableCampaign: Campaign = { ...this.campaign };
   errorMsg = '';
+  currentKeyword = '';
   closingAnimation = false;
 
   constructor(
@@ -49,39 +64,34 @@ export class CampaignModalComponent implements OnInit {
   ) {
     this.campaigns$ = store.select('campaigns');
   }
+
   ngOnInit(): void {
-    this.http.get(this.url).subscribe((res) => {
+    this.http.get(this.keywordsUrl).subscribe((res) => {
       this.keywords = (res as { keywords: string[] }).keywords;
     });
+
+    this.http.get(this.citiesUrl).subscribe((res) => {
+      this.cities = (res as { cities: string[] }).cities;
+    });
+
     this.campaigns$.subscribe((data) => {
       this.campaignsNames = data.campaigns.map((c) => c.name);
     });
+
     this.editableCampaign = { ...this.campaign };
   }
+
   handleClose() {
     this.closingAnimation = true;
+    if (this.type === 'edit') this.editableCampaign = { ...this.campaign };
     setTimeout(() => {
       this.closingAnimation = false;
       this.onClose.emit();
-    }, 300);
+    }, 250);
   }
-  handleSubmit() {
-    if (
-      (this.type === 'new' &&
-        this.campaignsNames.includes(this.editableCampaign.name)) ||
-      (this.type === 'edit' &&
-        this.campaignsNames
-          .filter((c) => c !== this.campaign.name)
-          .includes(this.editableCampaign.name))
-    ) {
-      this.errorMsg = 'Campaign with this name already exists';
-      return;
-    }
 
-    if (this.editableCampaign.keywords.length === 0) {
-      this.errorMsg = 'Please add at least one keyword';
-      return;
-    }
+  handleSubmit() {
+    if (!this.validate()) return;
 
     this.onSubmit.emit(this.editableCampaign);
     this.editableCampaign = { ...companyMock };
@@ -118,5 +128,45 @@ export class CampaignModalComponent implements OnInit {
   handleCampaignNameChange(event: Event) {
     const name = (<HTMLInputElement>event.target).value.trim();
     this.editableCampaign.name = name;
+  }
+
+  validate() {
+    if (this.editableCampaign.name === '') {
+      this.errorMsg = 'Please fill in the campaign name';
+      return false;
+    }
+
+    if (
+      (this.type === 'new' &&
+        this.campaignsNames.includes(this.editableCampaign.name)) ||
+      (this.type === 'edit' &&
+        this.campaignsNames
+          .filter((c) => c !== this.campaign.name)
+          .includes(this.editableCampaign.name))
+    ) {
+      this.errorMsg = 'Campaign with this name already exists';
+      return false;
+    }
+
+    if (this.editableCampaign.keywords.length === 0) {
+      this.errorMsg = 'Please add at least one keyword';
+      return false;
+    }
+
+    if (this.bidControl.errors) {
+      this.errorMsg = 'Invalid bid value';
+      return false;
+    }
+
+    if (this.fundControl.errors) {
+      this.errorMsg = 'Invalid fund value';
+      return false;
+    }
+
+    if (this.radiusControl.errors) {
+      this.errorMsg = 'Invalid radius value';
+      return false;
+    }
+    return true;
   }
 }

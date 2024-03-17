@@ -28,6 +28,6 @@ input {
 }
 @media screen and (max-width: 400px) {
   input {
-    width: 80px;
+    max-width: 100px;
   }
 }
