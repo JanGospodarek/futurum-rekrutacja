@@ -8,7 +8,44 @@
   background-color: var(--color-surface-100);
 }
 .campaigns-container-wrapper {
-  flex-grow: 1;
-  height: 100%;
   display: flex;
+  overflow: scroll;
+}
+.campaigns-container-wrapper::-webkit-scrollbar {
+  display: none;
+}
+.campaigns-container {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  flex: 1;
+  overflow: hidden;
+}
+.campaings-header {
+  width: 100%;
+  text-align: left;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+.campaings-header > h2 {
+  font-size: 28px;
+}
+.balance-container {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background-color: var(--color-surface-200);
+  border-radius: 15px;
+  margin-right: 15px;
+  gap: 10px;
+}
+.balance-header {
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+.balance-amount {
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: var(--color-primary-500);
 }

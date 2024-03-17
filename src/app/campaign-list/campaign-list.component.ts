@@ -11,7 +11,7 @@ import { init } from '../store/campaigns.actions';
   templateUrl: './campaign-list.component.html',
   styleUrls: ['./campaign-list.component.css'],
 })
-export class CampaignListComponent implements OnInit {
+export class CampaignListComponent {
   campaigns$: Observable<InitialState>;
 
   constructor(
@@ -20,8 +20,5 @@ export class CampaignListComponent implements OnInit {
     }>
   ) {
     this.campaigns$ = store.select('campaigns');
-  }
-  ngOnInit(): void {
-    this.store.dispatch(init());
   }
 }

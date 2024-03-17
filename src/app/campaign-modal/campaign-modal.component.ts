@@ -37,11 +37,7 @@ export class CampaignModalComponent implements OnInit {
     Validators.min(10),
     Validators.max(100000),
   ]);
-  fundControl = new FormControl(10, [
-    Validators.required,
-    Validators.min(10),
-    Validators.max(100000),
-  ]);
+  fundControl = new FormControl(10, [Validators.required, Validators.min(10)]);
   radiusControl = new FormControl(10, [
     Validators.required,
     Validators.min(1),
@@ -55,7 +51,7 @@ export class CampaignModalComponent implements OnInit {
   errorMsg = '';
   currentKeyword = '';
   closingAnimation = false;
-
+  balance = 0;
   constructor(
     private store: Store<{
       campaigns: InitialState;
@@ -76,6 +72,7 @@ export class CampaignModalComponent implements OnInit {
 
     this.campaigns$.subscribe((data) => {
       this.campaignsNames = data.campaigns.map((c) => c.name);
+      this.balance = data.balance;
     });
 
     this.editableCampaign = { ...this.campaign };
@@ -158,7 +155,10 @@ export class CampaignModalComponent implements OnInit {
       return false;
     }
 
-    if (this.fundControl.errors) {
+    if (
+      this.fundControl.errors ||
+      this.editableCampaign.fundAmount > this.balance
+    ) {
       this.errorMsg = 'Invalid fund value';
       return false;
     }

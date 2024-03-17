@@ -1,16 +1,9 @@
-.campaigns-container {
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
-  flex: 1;
-  overflow: hidden;
-}
 .campaigns-list-container {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   padding: inherit;
-  overflow-y: scroll;
+  overflow: scroll;
 }
 @media screen and (max-width: 400px) {
   .campaigns-list-container {
@@ -35,12 +28,4 @@
 }
 .campaigns-warning {
   padding: 20px;
-}
-.campaings-header {
-  width: 100%;
-  text-align: left;
-  padding: 10px;
-}
-.campaings-header > h2 {
-  font-size: 28px;
 }

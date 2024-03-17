@@ -1,3 +1,15 @@
 <main class="main-conatiner">
-  <app-campaign-list class="campaigns-container-wrapper" />
+  <div class="campaigns-container">
+    <div class="campaings-header">
+      <h2>Your campaigns</h2>
+      <div class="balance-container">
+        <p class="balance-header">Current balance:</p>
+        <p class="balance-amount">{{ (campaigns$ | async)!.balance }} PLN</p>
+      </div>
+    </div>
+    <div>
+      <app-actions />
+    </div>
+    <app-campaign-list class="campaigns-container-wrapper" />
+  </div>
 </main>
