@@ -141,6 +141,7 @@ select:focus {
 .error-msg {
   color: red;
   font-size: 0.9rem;
+  font-weight: 600;
   text-align: center;
 }
 
