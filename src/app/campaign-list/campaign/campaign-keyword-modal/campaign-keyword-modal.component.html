@@ -15,4 +15,12 @@
     </div>
   </div>
 </div>
-<div class="modal-overlay" *ngIf="isOpened" (click)="handleClose()"></div>
+<div
+  class="modal-overlay"
+  *ngIf="isOpened"
+  [ngClass]="{
+    'animate-overlay-fade-out': closingAnimation,
+    'animate-overlay-fade-in': !closingAnimation
+  }"
+  (click)="handleClose()"
+></div>
