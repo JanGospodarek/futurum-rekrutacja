@@ -4,6 +4,7 @@ import {
   editCampaign,
   deleteCampaign,
   init,
+  toggleCampaign,
 } from './campaigns.actions';
 import { Campaign } from '../types';
 import {
@@ -27,7 +28,10 @@ export const campaignsReducer = createReducer(
 
     const newState = {
       ...state,
-      balance: state.balance - campaignCopy.fundAmount,
+      balance:
+        campaignCopy.status === 'on'
+          ? state.balance - campaignCopy.fundAmount
+          : state.balance,
       campaigns: [...state.campaigns, campaignCopy],
     };
     wrtieToLocalStorage(newState);
@@ -35,11 +39,24 @@ export const campaignsReducer = createReducer(
   }),
 
   on(editCampaign, (state, { campaign }) => {
-    const prevFundAmount = state.campaigns.find(
-      (c) => c.id === campaign.id
-    )!.fundAmount;
-    const diff = prevFundAmount - campaign.fundAmount;
-    const newBalance = state.balance + diff;
+    const prevState = state.campaigns.find((c) => c.id === campaign.id)!;
+    const diff = prevState.fundAmount - campaign.fundAmount;
+    let newBalance = state.balance;
+
+    // if (prevState.status === 'on' && campaign.status === 'off')
+    //   if (diff > 0) newBalance += diff;
+    //   else newBalance += prevState.fundAmount;
+
+    // if (prevState.status === 'off' && campaign.status === 'on')
+    //   newBalance -= campaign.fundAmount;
+
+    // if (prevState.status === 'on' && campaign.status === 'on')
+    //   newBalance += diff;
+    if (campaign.status === 'off') {
+    } else {
+      newBalance += diff;
+    }
+
     const newState = {
       ...state,
       balance: newBalance,
@@ -52,17 +69,33 @@ export const campaignsReducer = createReducer(
   }),
 
   on(deleteCampaign, (state, { id }) => {
-    const prevFundAmount = state.campaigns.find((c) => c.id === id)!.fundAmount;
+    const prevState = state.campaigns.find((c) => c.id === id)!;
 
     const newState = {
       ...state,
-      balance: state.balance + prevFundAmount,
+      balance:
+        prevState.status === 'on'
+          ? state.balance + prevState.fundAmount
+          : state.balance,
       campaigns: state.campaigns.filter((c) => c.id !== id),
     };
     wrtieToLocalStorage(newState);
     return newState;
   }),
-
+  on(toggleCampaign, (state, { campaign, status }) => {
+    const newState = {
+      ...state,
+      balance:
+        status === 'on'
+          ? state.balance - campaign.fundAmount
+          : state.balance + campaign.fundAmount,
+      campaigns: state.campaigns.map((c) =>
+        c.id === campaign.id ? campaign : c
+      ),
+    };
+    wrtieToLocalStorage(newState);
+    return newState;
+  }),
   on(init, (state) => {
     const storedState = readFromLocalStorage();
     return storedState ? storedState : state;

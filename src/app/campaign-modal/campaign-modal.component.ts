@@ -156,11 +156,10 @@ export class CampaignModalComponent implements OnInit {
       this.errorMsg = 'Invalid bid value';
       return false;
     }
-
+    const editBlanace = this.balance + this.campaign.fundAmount;
     if (
       this.fundControl.errors ||
-      this.editableCampaign.fundAmount >
-        this.balance + this.campaign.fundAmount ||
+      this.editableCampaign.fundAmount >= editBlanace ||
       (this.type === 'new' && this.editableCampaign.fundAmount > this.balance)
     ) {
       this.errorMsg = 'Invalid fund value';

@@ -2,7 +2,11 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { InitialState } from 'src/app/store/campaigns.reducer';
 import { Campaign } from 'src/app/types';
-import { deleteCampaign, editCampaign } from 'src/app/store/campaigns.actions';
+import {
+  deleteCampaign,
+  editCampaign,
+  toggleCampaign,
+} from 'src/app/store/campaigns.actions';
 @Component({
   selector: 'app-campaign',
   templateUrl: './campaign.component.html',
@@ -24,7 +28,12 @@ export class CampaignComponent implements OnInit {
   openAccordion = false;
   isEditModalOpened = false;
   isKeywordModalOpened = false;
-  constructor(private store: Store<{ campaigns: InitialState }>) {}
+  balance = 0;
+  constructor(private store: Store<{ campaigns: InitialState }>) {
+    this.store.select('campaigns').subscribe((state) => {
+      this.balance = state.balance;
+    });
+  }
   ngOnInit(): void {
     this.editableCampaign = { ...this.campaign };
   }
@@ -39,5 +48,21 @@ export class CampaignComponent implements OnInit {
   handleShowKeywords() {
     console.log(this.editableCampaign);
     console.log(this.campaign.keywords);
+  }
+  handleToggle(event: Event) {
+    if (
+      this.editableCampaign.status === 'off' &&
+      this.balance - this.editableCampaign.fundAmount < 0
+    )
+      return;
+
+    const newStatus = this.editableCampaign.status === 'on' ? 'off' : 'on';
+    this.editableCampaign.status = newStatus;
+    this.store.dispatch(
+      toggleCampaign({
+        campaign: this.editableCampaign,
+        status: newStatus,
+      })
+    );
   }
 }

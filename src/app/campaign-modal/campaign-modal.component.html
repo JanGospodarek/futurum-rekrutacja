@@ -69,42 +69,8 @@
           [(ngModel)]="editableCampaign.fundAmount"
           [formControl]="fundControl"
         />
-        <p class="fund-remainging">
-          <span>Remains:</span>
-          <br />
-
-          {{
-            this.balance +
-              this.campaign.fundAmount -
-              this.editableCampaign.fundAmount >
-            0
-              ? this.balance +
-                this.campaign.fundAmount -
-                this.editableCampaign.fundAmount
-              : 0
-          }}
-        </p>
       </div>
 
-      <div class="modal-input-container-row">
-        <label>Status</label>
-        <label class="switch" style="width: 60px">
-          <input
-            type="checkbox"
-            id="toggle"
-            [checked]="editableCampaign.status === 'on'"
-            (input)="
-              editableCampaign.status === 'on'
-                ? (editableCampaign.status = 'off')
-                : (editableCampaign.status = 'on')
-            "
-          />
-          <span class="slider round"></span>
-        </label>
-        <span class="modal-input-additional-placeholder">{{
-          editableCampaign.status
-        }}</span>
-      </div>
       <div class="modal-input-container-row">
         <label>Town</label>
         <select

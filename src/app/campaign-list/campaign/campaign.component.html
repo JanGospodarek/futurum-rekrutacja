@@ -1,11 +1,22 @@
 <div class="campaign-container">
   <div class="campaign-header">
     <h3>{{ campaign.name }}</h3>
-    <div>
+    <!-- <div>
       <div
         class="status-badge"
         [ngClass]="{ 'status-badge-danger': campaign.status === 'off' }"
       ></div>
+    </div> -->
+    <div>
+      <label class="switch" style="width: 60px">
+        <input
+          type="checkbox"
+          id="toggle"
+          [checked]="editableCampaign.status === 'on'"
+          (input)="handleToggle($event)"
+        />
+        <span class="slider round"></span>
+      </label>
     </div>
   </div>
   <div class="campaign-body">

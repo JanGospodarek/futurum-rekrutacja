@@ -15,5 +15,9 @@ export const deleteCampaign = createAction(
   ' Delete Campaign',
   props<{ id: string }>()
 );
+export const toggleCampaign = createAction(
+  ' Toggle Campaign',
+  props<{ campaign: Campaign; status: 'on' | 'off' }>()
+);
 
 export const init = createAction('Init app');
