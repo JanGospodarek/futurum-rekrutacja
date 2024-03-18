@@ -131,10 +131,13 @@
       </div>
     </div>
     <div class="modal-button-container">
-      <button class="btn-filled" (click)="handleClose()">Cancel</button>
-      <button class="btn-filled" (click)="handleSubmit()">
-        {{ type === "new" ? "Create" : "Save" }}
-      </button>
+      <div class="modal-button-container-btns">
+        <button class="btn-filled" (click)="handleClose()">Cancel</button>
+        <button class="btn-filled" (click)="handleSubmit()">
+          {{ type === "new" ? "Create" : "Save" }}
+        </button>
+      </div>
+
       <p class="error-msg">{{ errorMsg }}</p>
     </div>
   </div>

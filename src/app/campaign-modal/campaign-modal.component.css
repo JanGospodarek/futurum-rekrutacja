@@ -32,6 +32,10 @@ select:focus {
   margin-top: 10px;
   align-items: center;
 }
+.modal-button-container-btns {
+  display: flex;
+  gap: 10px;
+}
 .modal-input-additional-placeholder {
   color: var(--color-primary-500);
   opacity: 0.8;
@@ -152,8 +156,7 @@ select:focus {
 .fund-remainging > span {
   font-weight: 400;
 }
-.fund-remainging > p {
-}
+
 @media screen and (max-width: 400px) {
   .keywords-container {
     width: 100%;
@@ -172,5 +175,8 @@ select:focus {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+  }
+  .modal-button-container {
+    flex-direction: column;
   }
 }
