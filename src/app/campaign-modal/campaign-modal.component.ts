@@ -129,15 +129,11 @@ export class CampaignModalComponent implements OnInit {
   handleSetTown(event: Event) {
     this.editableCampaign.town = (<HTMLInputElement>event.target).value as City;
   }
-  handleCampaignNameChange(event: Event) {
-    const name = (<HTMLInputElement>event.target).value.trim();
-    this.editableCampaign.name = name;
-  }
 
   validate() {
     // Campaign name validation
     if (this.editableCampaign.name === '') {
-      this.errorMsg = 'Please fill in the campaign name';
+      this.errorMsg = 'Fill campaign name field';
       return false;
     }
 

@@ -10,6 +10,9 @@
 .keywords-container {
   position: relative;
 }
+.campaign-name {
+  word-break: break-all;
+}
 .status-badge {
   background-color: green;
   border-radius: 50%;
