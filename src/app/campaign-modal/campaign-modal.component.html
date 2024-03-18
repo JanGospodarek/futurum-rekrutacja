@@ -63,7 +63,22 @@
           [(ngModel)]="editableCampaign.fundAmount"
           [formControl]="fundControl"
         />
+        <p class="fund-remainging">
+          <span>Remains:</span>
+          <br />
+          {{
+            this.balance +
+              this.campaign.fundAmount -
+              this.editableCampaign.fundAmount >
+            0
+              ? this.balance +
+                this.campaign.fundAmount -
+                this.editableCampaign.fundAmount
+              : 0
+          }}
+        </p>
       </div>
+
       <div class="modal-input-container-row">
         <label>Status</label>
         <label class="switch" style="width: 60px">

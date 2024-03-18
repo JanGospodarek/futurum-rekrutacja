@@ -157,7 +157,7 @@ export class CampaignModalComponent implements OnInit {
 
     if (
       this.fundControl.errors ||
-      this.editableCampaign.fundAmount > this.balance
+      this.editableCampaign.fundAmount > this.balance + this.campaign.fundAmount
     ) {
       this.errorMsg = 'Invalid fund value';
       return false;

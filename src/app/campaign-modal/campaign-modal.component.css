@@ -144,7 +144,17 @@ select:focus {
   font-weight: 600;
   text-align: center;
 }
-
+.fund-remainging {
+  color: var(--color-primary-500);
+  opacity: 0.8;
+  font-size: 0.8rem;
+  text-align: center;
+}
+.fund-remainging > span {
+  font-weight: 400;
+}
+.fund-remainging > p {
+}
 @media screen and (max-width: 400px) {
   .keywords-container {
     width: 100%;
