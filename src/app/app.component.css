@@ -9,6 +9,8 @@
 .campaigns-container-wrapper {
   display: flex;
   overflow: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 .campaigns-container-wrapper::-webkit-scrollbar {
   display: none;

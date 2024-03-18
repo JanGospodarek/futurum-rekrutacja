@@ -4,6 +4,8 @@
   align-items: center;
   padding: inherit;
   overflow: scroll;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none;
 }
 @media screen and (max-width: 400px) {
   .campaigns-list-container {

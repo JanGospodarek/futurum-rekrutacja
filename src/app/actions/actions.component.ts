@@ -22,7 +22,7 @@ export class ActionsComponent {
     this.isModalOpened = false;
   }
   handleSearch(event: Event) {
-    const value = (event.target as HTMLInputElement).value;
+    const { value } = event.target as HTMLInputElement;
     this.onSearch.emit(value);
   }
   handleClear() {

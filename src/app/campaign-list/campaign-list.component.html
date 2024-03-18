@@ -1,9 +1,4 @@
 <div class="campaigns-list-container">
-  <!-- <p>No campaigns added yet!</p> -->
-  <!-- <div *ngIf="(campaigns$ | async)!.length > 0; else elseBlock">
-      <p>No campaigns added yet!</p>
-    </div> -->
-  <!-- <div style="color: white">{{ count$ | async }}</div> -->
   <div *ngIf="(campaigns$ | async)!.length === 0" class="campaigns-warning">
     <p *ngIf="query === ''">No campaigns added yet!</p>
     <p *ngIf="query !== ''">

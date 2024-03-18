@@ -78,6 +78,8 @@ select:focus {
   overflow: scroll;
   max-height: 80px;
   width: 300px;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none;
 }
 
 .keywords-container::-webkit-scrollbar {

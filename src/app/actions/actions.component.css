@@ -1,8 +1,4 @@
 .actions-container {
-  /* width: 200px;
-  height: 100%;
-  display: flex;
-  flex-direction: column; */
   display: flex;
   padding-left: 20px;
   align-items: center;

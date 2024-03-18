@@ -12,6 +12,8 @@
   max-height: 200px;
   overflow: scroll;
   padding: 10px;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none;
 }
 .allkeywords-container::-webkit-scrollbar {
   display: none;

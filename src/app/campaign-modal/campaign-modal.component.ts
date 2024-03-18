@@ -6,7 +6,7 @@ import { InitialState } from '../store/campaigns.reducer';
 import { HttpClient } from '@angular/common/http';
 import { FormControl, Validators } from '@angular/forms';
 
-const companyMock: Campaign = {
+const companyBlueprint: Campaign = {
   id: '',
   name: '',
   keywords: [],
@@ -27,7 +27,7 @@ export class CampaignModalComponent implements OnInit {
   @Output() onSubmit: EventEmitter<any> = new EventEmitter();
   @Input() isOpened = false;
   @Input() type: 'new' | 'edit' = 'new';
-  @Input() campaign: Campaign = { ...companyMock };
+  @Input() campaign: Campaign = { ...companyBlueprint };
 
   keywordsUrl: string = '/assets/keywords.json';
   citiesUrl: string = '/assets/cities.json';
@@ -53,6 +53,7 @@ export class CampaignModalComponent implements OnInit {
   currentKeyword = '';
   closingAnimation = false;
   balance = 0;
+
   constructor(
     private store: Store<{
       campaigns: InitialState;
@@ -89,10 +90,14 @@ export class CampaignModalComponent implements OnInit {
   }
 
   handleSubmit() {
-    if (!this.validate()) return;
+    const error = this.validate();
+    if (error !== 'valid') {
+      this.errorMsg = error;
+      return;
+    }
 
     this.onSubmit.emit(this.editableCampaign);
-    this.editableCampaign = { ...companyMock };
+    this.editableCampaign = { ...companyBlueprint };
     this.errorMsg = '';
   }
 
@@ -109,16 +114,19 @@ export class CampaignModalComponent implements OnInit {
       this.errorMsg = 'Invalid keyword';
       return;
     }
+
     if (this.editableCampaign.keywords.length > 30) {
       this.errorMsg = 'Max 30 keywords allowed';
       return;
     }
-    this.errorMsg = '';
+
     this.editableCampaign.keywords = [
       ...this.editableCampaign.keywords,
       this.currentKeyword,
     ];
+
     this.currentKeyword = '';
+    this.errorMsg = '';
   }
 
   removeKeyword(keyword: string) {
@@ -129,10 +137,7 @@ export class CampaignModalComponent implements OnInit {
 
   validate() {
     // Campaign name validation
-    if (this.editableCampaign.name === '') {
-      this.errorMsg = 'Fill campaign name field';
-      return false;
-    }
+    if (this.editableCampaign.name === '') return 'Fill campaign name field';
 
     if (
       (this.type === 'new' &&
@@ -141,35 +146,28 @@ export class CampaignModalComponent implements OnInit {
         this.campaignsNames
           .filter((c) => c !== this.campaign.name)
           .includes(this.editableCampaign.name))
-    ) {
-      this.errorMsg = 'Campaign with this name already exists';
-      return false;
-    }
+    )
+      return 'Campaign with this name already exists';
+
     // Keywords validation
-    if (this.editableCampaign.keywords.length === 0) {
-      this.errorMsg = 'Please add at least one keyword';
-      return false;
-    }
+    if (this.editableCampaign.keywords.length === 0)
+      return 'Please add at least one keyword';
+
     // Bid validation
-    if (this.bidControl.errors) {
-      this.errorMsg = 'Invalid bid value';
-      return false;
-    }
+    if (this.bidControl.errors) return 'Invalid bid value';
+
     // Fund validation
     const editBlanace = this.balance + this.campaign.fundAmount;
     if (
       this.fundControl.errors ||
       this.editableCampaign.fundAmount >= editBlanace ||
       (this.type === 'new' && this.editableCampaign.fundAmount > this.balance)
-    ) {
-      this.errorMsg = 'Invalid fund value';
-      return false;
-    }
+    )
+      return 'Invalid fund value';
+
     // Radius validation
-    if (this.radiusControl.errors) {
-      this.errorMsg = 'Invalid radius value';
-      return false;
-    }
-    return true;
+    if (this.radiusControl.errors) return 'Invalid radius value';
+
+    return 'valid';
   }
 }

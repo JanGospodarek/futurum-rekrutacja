@@ -13,27 +13,20 @@ import {
   styleUrls: ['./campaign.component.css'],
 })
 export class CampaignComponent implements OnInit {
-  @Input() campaign: Campaign = {
-    id: '123',
-    name: 'Campaign 1',
-    keywords: [],
-    bidAmount: 10,
-    fundAmount: 10,
-    status: 'on',
-    town: 'Warszawa',
-    radius: 10,
-  };
-  editableCampaign = { ...this.campaign };
+  @Input() campaign!: Campaign;
+  editableCampaign!: Campaign;
 
   openAccordion = false;
   isEditModalOpened = false;
   isKeywordModalOpened = false;
   balance = 0;
+
   constructor(private store: Store<{ campaigns: InitialState }>) {
     this.store.select('campaigns').subscribe((state) => {
       this.balance = state.balance;
     });
   }
+
   ngOnInit(): void {
     this.editableCampaign = { ...this.campaign };
   }
@@ -42,13 +35,10 @@ export class CampaignComponent implements OnInit {
   }
 
   handleDelete() {
-    const id = this.campaign.id;
+    const { id } = this.campaign;
     this.store.dispatch(deleteCampaign({ id }));
   }
-  handleShowKeywords() {
-    console.log(this.editableCampaign);
-    console.log(this.campaign.keywords);
-  }
+
   handleToggle() {
     if (
       this.editableCampaign.status === 'off' &&
