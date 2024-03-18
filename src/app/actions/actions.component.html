@@ -8,12 +8,13 @@
     (input)="handleSearch($event)"
     placeholder="Search by name"
     class="actions-search-input"
+    maxlength="25"
   />
   <button (click)="handleClear()">
     <img
       *ngIf="query !== ''"
       src="/assets/clean.svg"
-      alt=""
+      alt="Clean"
       style="animation: fadeInOverlay 0.5s"
     />
   </button>
