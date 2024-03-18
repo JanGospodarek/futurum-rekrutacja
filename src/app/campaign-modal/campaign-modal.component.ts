@@ -126,9 +126,6 @@ export class CampaignModalComponent implements OnInit {
       (item) => item !== keyword
     );
   }
-  handleSetTown(event: Event) {
-    this.editableCampaign.town = (<HTMLInputElement>event.target).value as City;
-  }
 
   validate() {
     // Campaign name validation
