@@ -13,6 +13,10 @@
           type="checkbox"
           id="toggle"
           [checked]="editableCampaign.status === 'on'"
+          [disabled]="
+            editableCampaign.status === 'off' &&
+            balance - editableCampaign.fundAmount < 0
+          "
           (input)="handleToggle($event)"
         />
         <span class="slider round"></span>
