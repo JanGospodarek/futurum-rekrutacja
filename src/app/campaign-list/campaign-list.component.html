@@ -7,7 +7,7 @@
   <div *ngIf="(campaigns$ | async)!.length === 0" class="campaigns-warning">
     <p *ngIf="query === ''">No campaigns added yet!</p>
     <p *ngIf="query !== ''">
-      No campaigns found with name including: {{ query }}
+      No campaigns was found with name including: {{ query }}
     </p>
   </div>
 

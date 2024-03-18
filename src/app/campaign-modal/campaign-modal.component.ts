@@ -104,7 +104,8 @@ export class CampaignModalComponent implements OnInit {
     if (
       this.currentKeyword === '' ||
       this.editableCampaign.keywords.includes(this.currentKeyword) ||
-      this.editableCampaign.keywords.length > 15
+      this.editableCampaign.keywords.length > 20 ||
+      this.currentKeyword.split(' ').length > 1
     )
       return;
 
