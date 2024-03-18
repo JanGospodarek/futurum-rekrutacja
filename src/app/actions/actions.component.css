@@ -5,7 +5,20 @@
   flex-direction: column; */
   display: flex;
   padding-left: 20px;
+  align-items: center;
+  gap: 10px;
 }
 .actions-btn {
   padding: 8px 15px;
+}
+.actions-container > input {
+  height: 25px;
+  margin-left: 10px;
+}
+@media screen and (max-width: 400px) {
+  .actions-container {
+    padding: 0;
+    flex-direction: row;
+    justify-content: center;
+  }
 }

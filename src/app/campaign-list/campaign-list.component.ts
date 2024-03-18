@@ -1,24 +1,29 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { Campaign } from '../types';
 import { Observable } from 'rxjs';
 
 import { Store } from '@ngrx/store';
 import { InitialState } from '../store/campaigns.reducer';
 import { init } from '../store/campaigns.actions';
+import { selectFilteredCampaigns } from '../store/campaigns.selector';
 
 @Component({
   selector: 'app-campaign-list',
   templateUrl: './campaign-list.component.html',
   styleUrls: ['./campaign-list.component.css'],
 })
-export class CampaignListComponent {
-  campaigns$: Observable<InitialState>;
-
+export class CampaignListComponent implements OnChanges {
+  campaigns$!: Observable<Campaign[]>;
+  @Input() query: string = '';
   constructor(
     private store: Store<{
       campaigns: InitialState;
     }>
-  ) {
-    this.campaigns$ = store.select('campaigns');
+  ) {}
+
+  ngOnChanges(): void {
+    this.campaigns$ = this.store.select(selectFilteredCampaigns, {
+      query: this.query,
+    });
   }
 }

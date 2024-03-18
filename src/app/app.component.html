@@ -8,8 +8,8 @@
       </div>
     </div>
     <div>
-      <app-actions />
+      <app-actions (onSearch)="handleSearch($event)" />
     </div>
-    <app-campaign-list class="campaigns-container-wrapper" />
+    <app-campaign-list class="campaigns-container-wrapper" [query]="query" />
   </div>
 </main>

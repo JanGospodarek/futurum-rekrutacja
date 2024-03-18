@@ -2,6 +2,16 @@
   <button class="btn-filled actions-btn" (click)="isModalOpened = true">
     Add
   </button>
+  <input
+    type="text"
+    [(ngModel)]="query"
+    (input)="handleSearch($event)"
+    placeholder="Search by name"
+    class="actions-search-input"
+  />
+  <button (click)="handleClear()">
+    <img src="/assets/clean.svg" alt="" />
+  </button>
   <app-campaign-modal
     (onClose)="isModalOpened = false"
     (onSubmit)="handleAdd($event)"

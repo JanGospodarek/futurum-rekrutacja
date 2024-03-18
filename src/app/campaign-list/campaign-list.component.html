@@ -4,15 +4,15 @@
       <p>No campaigns added yet!</p>
     </div> -->
   <!-- <div style="color: white">{{ count$ | async }}</div> -->
-  <div
-    *ngIf="(campaigns$ | async)!.campaigns.length === 0"
-    class="campaigns-warning"
-  >
-    <p>No campaigns added yet!</p>
+  <div *ngIf="(campaigns$ | async)!.length === 0" class="campaigns-warning">
+    <p *ngIf="query === ''">No campaigns added yet!</p>
+    <p *ngIf="query !== ''">
+      No campaigns found with name including: {{ query }}
+    </p>
   </div>
 
   <app-campaign
-    *ngFor="let campaign of (campaigns$ | async)!.campaigns"
+    *ngFor="let campaign of (campaigns$ | async)!"
     [campaign]="campaign"
     class="campaign-container-wrapper"
   />

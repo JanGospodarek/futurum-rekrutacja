@@ -41,8 +41,9 @@ export class CampaignModalComponent implements OnInit {
   radiusControl = new FormControl(10, [
     Validators.required,
     Validators.min(1),
-    Validators.max(1000),
+    Validators.max(10000),
   ]);
+
   keywords: string[] = [];
   cities: string[] = [];
   campaigns$: Observable<InitialState>;

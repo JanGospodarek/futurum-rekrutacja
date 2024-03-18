@@ -11,10 +11,6 @@
 }
 .modal-input-container-row > input,
 select {
-  padding: 3px;
-  background-color: transparent;
-  border-radius: 8px;
-  border: 1px solid var(--color-primary-300);
   width: 150px;
 }
 
@@ -26,6 +22,9 @@ select:focus {
 }
 .modal-input-container-row > label {
   width: 120px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
 .modal-button-container {
   display: flex;
@@ -36,7 +35,7 @@ select:focus {
 .modal-input-additional-placeholder {
   color: var(--color-primary-500);
   opacity: 0.8;
-  font-size: 0.8rem;
+  font-size: 0.7rem;
 }
 .keyword-btn-delete {
   background-color: red;
@@ -166,6 +165,7 @@ select:focus {
 
   .keywords-container {
     max-height: 60px;
+    width: 260px;
   }
   .modal-contnet {
     display: flex;

@@ -12,6 +12,7 @@ import { init } from './store/campaigns.actions';
 export class AppComponent {
   title = 'zadanie';
   campaigns$: Observable<InitialState>;
+  query = '';
   constructor(
     private store: Store<{
       campaigns: InitialState;
@@ -21,5 +22,8 @@ export class AppComponent {
   }
   ngOnInit(): void {
     this.store.dispatch(init());
+  }
+  handleSearch(query: string) {
+    this.query = query;
   }
 }

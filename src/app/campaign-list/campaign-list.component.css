@@ -8,8 +8,10 @@
 @media screen and (max-width: 400px) {
   .campaigns-list-container {
     flex-direction: column;
-    justify-content: center;
+    justify-content: start;
     width: 100%;
+    flex-wrap: nowrap;
+    margin: 10px 0;
   }
   .campaign-container-wrapper {
     width: 100%;
@@ -29,4 +31,5 @@
 }
 .campaigns-warning {
   padding: 20px;
+  text-align: center;
 }
