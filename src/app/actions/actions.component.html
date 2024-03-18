@@ -10,7 +10,7 @@
     class="actions-search-input"
   />
   <button (click)="handleClear()">
-    <img src="/assets/clean.svg" alt="" />
+    <img *ngIf="query !== ''" src="/assets/clean.svg" alt="" />
   </button>
   <app-campaign-modal
     (onClose)="isModalOpened = false"
