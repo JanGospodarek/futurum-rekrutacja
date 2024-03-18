@@ -49,7 +49,7 @@ export class CampaignComponent implements OnInit {
     console.log(this.editableCampaign);
     console.log(this.campaign.keywords);
   }
-  handleToggle(event: Event) {
+  handleToggle() {
     if (
       this.editableCampaign.status === 'off' &&
       this.balance - this.editableCampaign.fundAmount < 0

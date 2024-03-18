@@ -12,6 +12,7 @@
 .modal-input-container-row > input,
 select {
   width: 150px;
+  letter-spacing: 1px;
 }
 
 .modal-input-container-row > input:focus,

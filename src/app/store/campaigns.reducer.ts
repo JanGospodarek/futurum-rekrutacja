@@ -11,6 +11,7 @@ import {
   readFromLocalStorage,
   wrtieToLocalStorage,
 } from '../utils/localStorage';
+import * as uuid from 'uuid';
 
 export interface InitialState {
   campaigns: Campaign[];
@@ -24,14 +25,11 @@ export const campaignsReducer = createReducer(
   initialState,
   on(addCampaign, (state, { campaign }) => {
     const campaignCopy = { ...campaign };
-    campaignCopy.id = Math.random().toString(36);
+    campaignCopy.id = uuid.v4();
 
     const newState = {
       ...state,
-      balance:
-        campaignCopy.status === 'on'
-          ? state.balance - campaignCopy.fundAmount
-          : state.balance,
+      balance: state.balance - campaignCopy.fundAmount,
       campaigns: [...state.campaigns, campaignCopy],
     };
     wrtieToLocalStorage(newState);
@@ -43,19 +41,7 @@ export const campaignsReducer = createReducer(
     const diff = prevState.fundAmount - campaign.fundAmount;
     let newBalance = state.balance;
 
-    // if (prevState.status === 'on' && campaign.status === 'off')
-    //   if (diff > 0) newBalance += diff;
-    //   else newBalance += prevState.fundAmount;
-
-    // if (prevState.status === 'off' && campaign.status === 'on')
-    //   newBalance -= campaign.fundAmount;
-
-    // if (prevState.status === 'on' && campaign.status === 'on')
-    //   newBalance += diff;
-    if (campaign.status === 'off') {
-    } else {
-      newBalance += diff;
-    }
+    if (campaign.status === 'on') newBalance += diff;
 
     const newState = {
       ...state,
@@ -70,7 +56,6 @@ export const campaignsReducer = createReducer(
 
   on(deleteCampaign, (state, { id }) => {
     const prevState = state.campaigns.find((c) => c.id === id)!;
-
     const newState = {
       ...state,
       balance:

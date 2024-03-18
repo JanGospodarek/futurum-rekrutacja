@@ -13,6 +13,7 @@ export class AppComponent {
   title = 'zadanie';
   campaigns$: Observable<InitialState>;
   query = '';
+
   constructor(
     private store: Store<{
       campaigns: InitialState;
