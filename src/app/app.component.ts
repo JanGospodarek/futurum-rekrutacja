@@ -2,7 +2,7 @@ import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { InitialState } from './types';
 import { Observable } from 'rxjs';
-import { init } from './store/campaigns.actions';
+import { init } from '../store/campaigns.actions';
 
 @Component({
   selector: 'app-root',

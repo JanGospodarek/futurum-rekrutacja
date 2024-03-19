@@ -6,7 +6,7 @@ import {
   init,
   toggleCampaign,
 } from './campaigns.actions';
-import { type InitialState } from '../types';
+import { type InitialState } from '../app/types';
 import {
   readFromLocalStorage,
   wrtieToLocalStorage,

@@ -9,7 +9,7 @@ import { CampaignModalComponent } from './campaign-modal/campaign-modal.componen
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TypeaheadComponent } from './campaign-modal/typeahead/typeahead.component';
 import { StoreModule } from '@ngrx/store';
-import { campaignsReducer } from './store/campaigns.reducer';
+import { campaignsReducer } from '../store/campaigns.reducer';
 import { HttpClientModule } from '@angular/common/http';
 import { CampaignKeywordModalComponent } from './campaign-list/campaign/campaign-keyword-modal/campaign-keyword-modal.component';
 

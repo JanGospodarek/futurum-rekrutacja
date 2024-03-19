@@ -6,7 +6,7 @@ import {
   deleteCampaign,
   editCampaign,
   toggleCampaign,
-} from 'src/app/store/campaigns.actions';
+} from 'src/store/campaigns.actions';
 @Component({
   selector: 'app-campaign',
   templateUrl: './campaign.component.html',

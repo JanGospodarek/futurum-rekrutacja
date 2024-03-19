@@ -1,5 +1,5 @@
 import { createSelector } from '@ngrx/store';
-import { InitialState, Campaign } from '../types';
+import { InitialState, Campaign } from '../app/types';
 
 export const selectFilteredCampaigns = createSelector(
   (state: { campaigns: InitialState }) => state.campaigns,

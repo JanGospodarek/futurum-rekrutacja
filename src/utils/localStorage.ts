@@ -1,4 +1,4 @@
-import { InitialState } from '../types';
+import { InitialState } from '../app/types';
 
 export const wrtieToLocalStorage = (state: InitialState) => {
   localStorage.clear();

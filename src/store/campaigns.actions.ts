@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { Campaign } from '../types';
+import { Campaign } from '../app/types';
 
 export const addCampaign = createAction(
   ' Add Campaign',

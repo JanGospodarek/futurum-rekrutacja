@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Campaign, InitialState } from '../types';
 import { Store } from '@ngrx/store';
-import { addCampaign } from '../store/campaigns.actions';
+import { addCampaign } from '../../store/campaigns.actions';
 @Component({
   selector: 'app-actions',
   templateUrl: './actions.component.html',
