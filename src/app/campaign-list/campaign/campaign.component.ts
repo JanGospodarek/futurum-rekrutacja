@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { InitialState } from 'src/app/store/campaigns.reducer';
+import { InitialState } from '../../types';
 import { Campaign } from 'src/app/types';
 import {
   deleteCampaign,

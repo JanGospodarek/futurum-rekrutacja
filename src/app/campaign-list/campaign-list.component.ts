@@ -1,10 +1,7 @@
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
-import { Campaign } from '../types';
+import { Component, Input, OnChanges } from '@angular/core';
+import { Campaign, InitialState } from '../types';
 import { Observable } from 'rxjs';
-
 import { Store } from '@ngrx/store';
-import { InitialState } from '../store/campaigns.reducer';
-import { init } from '../store/campaigns.actions';
 import { selectFilteredCampaigns } from '../store/campaigns.selector';
 
 @Component({

@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Campaign } from '../types';
+import { Campaign, InitialState } from '../types';
 import { Store } from '@ngrx/store';
-import { InitialState } from '../store/campaigns.reducer';
 import { addCampaign } from '../store/campaigns.actions';
 @Component({
   selector: 'app-actions',

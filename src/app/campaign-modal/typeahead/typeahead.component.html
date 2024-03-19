@@ -4,6 +4,7 @@
     [value]="query"
     (input)="handleQueryChange($event)"
     (blur)="handleBlur()"
+    maxlength="25"
   />
   <div class="suggestions-container" *ngIf="isOpen">
     <button

@@ -1,4 +1,4 @@
-import { createReducer, createSelector, on } from '@ngrx/store';
+import { createReducer, on } from '@ngrx/store';
 import {
   addCampaign,
   editCampaign,
@@ -6,21 +6,18 @@ import {
   init,
   toggleCampaign,
 } from './campaigns.actions';
-import { Campaign } from '../types';
+import { type InitialState } from '../types';
 import {
   readFromLocalStorage,
   wrtieToLocalStorage,
 } from '../utils/localStorage';
 import * as uuid from 'uuid';
 
-export interface InitialState {
-  campaigns: Campaign[];
-  balance: number;
-}
 export const initialState: InitialState = {
   campaigns: [],
   balance: 100000,
 };
+
 export const campaignsReducer = createReducer(
   initialState,
   on(addCampaign, (state, { campaign }) => {

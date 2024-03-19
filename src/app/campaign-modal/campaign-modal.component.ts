@@ -1,8 +1,7 @@
 import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { Observable, debounceTime, map } from 'rxjs';
-import { Campaign, City } from '../types';
+import { Campaign, InitialState } from '../types';
 import { Store } from '@ngrx/store';
-import { InitialState } from '../store/campaigns.reducer';
 import { HttpClient } from '@angular/common/http';
 import { FormControl, Validators } from '@angular/forms';
 
@@ -83,6 +82,7 @@ export class CampaignModalComponent implements OnInit {
   handleClose() {
     this.closingAnimation = true;
     if (this.type === 'edit') this.editableCampaign = { ...this.campaign };
+    else this.editableCampaign = { ...companyBlueprint };
     setTimeout(() => {
       this.closingAnimation = false;
       this.onClose.emit();

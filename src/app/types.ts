@@ -1,11 +1,13 @@
 export type City =
   | 'Warszawa'
   | 'Kraków'
-  | 'Gdańsk'
+  | 'Łódź'
   | 'Wrocław'
   | 'Poznań'
+  | 'Gdańsk'
   | 'Szczecin'
-  | 'Lublin';
+  | 'Bydgoszcz';
+
 export interface Campaign {
   id: string;
   name: string;
@@ -15,4 +17,8 @@ export interface Campaign {
   status: 'on' | 'off';
   town: City;
   radius: number;
+}
+export interface InitialState {
+  campaigns: Campaign[];
+  balance: number;
 }

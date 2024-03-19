@@ -1,4 +1,4 @@
-import { InitialState } from '../store/campaigns.reducer';
+import { InitialState } from '../types';
 
 export const wrtieToLocalStorage = (state: InitialState) => {
   localStorage.clear();

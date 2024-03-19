@@ -1,6 +1,5 @@
 import { createSelector } from '@ngrx/store';
-import { InitialState } from './campaigns.reducer';
-import { Campaign } from '../types';
+import { InitialState, Campaign } from '../types';
 
 export const selectFilteredCampaigns = createSelector(
   (state: { campaigns: InitialState }) => state.campaigns,
